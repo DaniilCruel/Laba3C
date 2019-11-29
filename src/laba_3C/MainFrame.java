@@ -10,7 +10,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 
 
@@ -138,7 +137,7 @@ public class MainFrame extends JFrame {
                 information.add(author);
                 information.add(Box.createVerticalStrut(10));
                 information.add(group);
-                information.add(Box.createVerticalStrut(10));
+                information.add(Box.createVerticalStrut(1));
                 information.add(image);
                 information.add(Box.createVerticalStrut(10));
                 information.add(Box.createVerticalGlue());
@@ -266,16 +265,15 @@ public class MainFrame extends JFrame {
 
     protected void saveToGraphicsFile(File selectedFile) {
         try {
-            // Создать новый байтовый поток вывода, направленный в указанный файл
             DataOutputStream out = new DataOutputStream(new FileOutputStream(selectedFile));
-            // Записать в поток вывода попарно значение X в точке, значение многочлена в точке
+
             for (int i = 0; i < data.getRowCount(); i++) {
                 out.writeDouble((Double) data.getValueAt(i, 0));
                 out.writeDouble((Double) data.getValueAt(i, 1));
-            } // Закрыть поток вывода
+            }
             out.close();
         } catch (Exception e) {
-            // Исключительную ситуацию "ФайлНеНайден" в данном случае можно не обрабатывать, так как мы файл создаѐм, а не открываем для чтения
+
         }
     }
 
